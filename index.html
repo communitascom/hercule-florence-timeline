@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linha do tempo · Festival Hercule Florence de Fotografia</title>
+<meta name="description" content="As edições do Festival Hercule Florence de Fotografia, de 2010 a 2026 — fotos, imprensa e histórico de cada ano.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:    #ffffff;
+  --white-2:  #f5f5f5;
+  --ink:      #0e0d0b;
+  --grey-1:   #2e2c28;
+  --grey-2:   #5a5750;
+  --grey-3:   #8c897f;
+  --grey-4:   #bbb8b0;
+  --grey-5:   #d8d5cc;
+  --acento:    #2A7D0B;
+  --acento-lt: #4CE01E;
+  --rule:     rgba(14,13,11,0.09);
+  --shadow:   0 12px 34px rgba(14,13,11,0.18);
+  --ease:     cubic-bezier(0.22, 1, 0.36, 1);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white); color: var(--ink);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+.label {
+  font-size: 9px; font-weight: 400; letter-spacing: 0.5em;
+  text-transform: uppercase; color: var(--acento);
+  display: block; margin-bottom: 20px;
+}
+.h-big { font-family: 'Bebas Neue', Impact, sans-serif; line-height: 0.92; letter-spacing: -0.01em;
+  font-size: clamp(36px, 5.6vw, 78px); }
+.italic { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 0.86em; color: var(--acento); }
+
+.wrap { max-width: 1480px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px); }
+
+/* ─── TOPO ─────────────────────────────────────────────── */
+.tl-top {
+  display: flex; align-items: center; gap: 22px;
+  padding: 20px clamp(20px, 4vw, 56px);
+  border-bottom: 1px solid var(--rule);
+}
+.tl-top-logo { height: 40px; width: auto; }
+.tl-top-back {
+  margin-left: auto; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--grey-2); border-bottom: 1px solid var(--grey-4); padding-bottom: 2px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.tl-top-back:hover { color: var(--acento); border-color: var(--acento); }
+
+.intro { padding: clamp(42px, 7vh, 76px) 0 clamp(26px, 4vh, 40px); }
+.intro-sub {
+  margin-top: 16px; max-width: 600px; font-size: 14.5px; line-height: 1.7;
+  font-weight: 300; color: var(--grey-2);
+}
+.intro-hint {
+  margin-top: 22px; display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey-3);
+}
+.intro-hint svg { width: 15px; height: 15px; stroke: var(--acento); fill: none; stroke-width: 1.6; }
+
+/* ─── TRILHO HORIZONTAL ───────────────────────────────── */
+.track-outer { position: relative; }
+.track {
+  display: flex; align-items: stretch; gap: 16px;
+  overflow-x: auto; scroll-snap-type: x proximity;
+  scroll-padding-left: clamp(20px, 4vw, 56px);
+  padding: 4px clamp(20px, 4vw, 56px) 30px;
+  height: clamp(440px, 60vh, 580px);
+  scrollbar-width: thin; scrollbar-color: var(--grey-4) transparent;
+}
+.track::-webkit-scrollbar { height: 6px; }
+.track::-webkit-scrollbar-track { background: transparent; }
+.track::-webkit-scrollbar-thumb { background: var(--grey-4); border-radius: 3px; }
+
+.track-nav {
+  position: absolute; top: 46%; transform: translateY(-50%); z-index: 5;
+  width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.95);
+  box-shadow: var(--shadow); display: grid; place-items: center;
+  transition: transform 0.3s var(--ease), background 0.3s;
+}
+.track-nav:hover { transform: translateY(-50%) scale(1.08); background: var(--ink); }
+.track-nav:hover svg { stroke: var(--white); }
+.track-nav svg { width: 17px; height: 17px; stroke: var(--ink); fill: none; stroke-width: 2; transition: stroke 0.3s; }
+.track-nav.prev { left: 6px; }
+.track-nav.next { right: 6px; }
+@media (max-width: 880px) { .track-nav { display: none; } }
+
+.ed {
+  flex: none; scroll-snap-align: start;
+  display: flex; flex-direction: column;
+  outline: none;
+}
+.ed-head { padding: 0 2px; }
+.ed-eyebrow {
+  display: flex; align-items: baseline; gap: 10px;
+  font-size: 9.5px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--acento);
+}
+.ed-eyebrow b {
+  font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.02em;
+  color: var(--ink); line-height: 1;
+}
+.ed-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(21px, 1.9vw, 28px);
+  line-height: 0.98; margin-top: 5px; transition: color 0.35s;
+}
+.ed:hover .ed-title, .ed:focus-within .ed-title { color: var(--acento); }
+
+.ed-grid {
+  flex: 1; display: grid; gap: 4px; overflow: hidden;
+  border-radius: 3px; margin-top: 12px;
+}
+.ed-grid[data-n="2"] { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+.ed-grid[data-n="3"] { grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr 1fr; }
+.ed-grid[data-n="3"] figure:nth-child(1) { grid-row: span 2; }
+.ed-grid[data-n="6"] { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); }
+
+figure {
+  position: relative; margin: 0; overflow: hidden;
+  background-size: cover; background-position: center;
+  filter: grayscale(82%) contrast(1.05) brightness(0.97);
+  transition: filter 0.6s var(--ease), transform 0.9s var(--ease);
+}
+figure:hover { filter: grayscale(0%) contrast(1.02) brightness(1); transform: scale(1.03); z-index: 2; }
+figure::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(14,13,11,0.78) 0%, rgba(14,13,11,0.02) 45%);
+  pointer-events: none;
+}
+figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding: 8px 10px; font-size: 10px; font-weight: 500; letter-spacing: 0.01em;
+  color: var(--white); line-height: 1.3;
+}
+
+.ed-text-wrap { height: clamp(70px, 10vh, 96px); margin-top: 12px; overflow: hidden; }
+.ed-text {
+  font-size: 13px; line-height: 1.58; font-weight: 300; color: var(--grey-2);
+  opacity: 0.55; transform: translateY(2px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.ed:hover .ed-text, .ed:focus-within .ed-text { opacity: 1; transform: none; }
+
+/* ─── RECORTE DE IMPRENSA (edições sem foto) ─────────────── */
+.ed-clips { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
+.ed-clip {
+  display: block; padding: 13px 14px; background: var(--white-2);
+  border: 1px solid var(--rule); border-radius: 3px;
+  transition: border-color 0.3s, background 0.3s;
+}
+.ed-clip:hover { border-color: var(--acento); background: var(--white); }
+.ed-clip-src {
+  display: block; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--grey-3); margin-bottom: 6px;
+}
+.ed-clip-headline {
+  display: block; font-family: 'DM Serif Display', Georgia, serif; font-style: italic;
+  font-size: 13px; line-height: 1.34; color: var(--ink);
+}
+.ed-clip-link {
+  display: inline-block; margin-top: 8px; font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--acento);
+}
+
+@media (max-width: 880px) {
+  .track { gap: 10px; padding: 4px 18px 26px; height: clamp(420px, 72vh, 560px); }
+  .ed-text-wrap { height: clamp(90px, 16vh, 130px); }
+}
+
+/* ─── RODAPÉ ───────────────────────────────────────────── */
+.tl-foot {
+  padding: 30px clamp(20px, 4vw, 56px) 50px;
+  border-top: 1px solid var(--rule);
+  font-size: 11px; font-weight: 300; color: var(--grey-3); line-height: 1.7;
+}
+.tl-foot a { color: var(--grey-1); border-bottom: 1px solid var(--grey-4); }
+.tl-foot a:hover { color: var(--acento); border-color: var(--acento); }
+</style>
+</head>
+<body>
+
+<header class="tl-top">
+  <img class="tl-top-logo" src="img/logo-hf-xvi-preto-800.webp"
+       width="800" height="257" alt="Festival Hercule Florence de Fotografia">
+</header>
+
+<section class="wrap intro">
+  <p class="label">Desde 2007</p>
+  <h1 class="h-big">16 edições. <span class="italic">Uma cidade que virou galeria.</span></h1>
+  <p class="intro-sub">Da primeira Semana Municipal da Fotografia, em 2007, até a edição em cartaz:
+    arraste para o lado — ou use as setas — e passe o mouse sobre cada edição para ler o que aconteceu
+    naquele ano.</p>
+  <span class="intro-hint">
+    <svg viewBox="0 0 24 24"><path d="M5 12h14M14 6l6 6-6 6"/></svg>
+    arraste ou use as setas · passe o mouse para ler mais
+  </span>
+</section>
+
+<div class="track-outer wrap" style="padding:0">
+  <button class="track-nav prev" id="navPrev" aria-label="Edições anteriores">
+    <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <button class="track-nav next" id="navNext" aria-label="Próximas edições">
+    <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+
+  <div class="track" id="track">
+
+    <article class="ed" style="width:400px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>01</b>I · 2007</p>
+        <h2 class="ed-title">O embrião do festival</h2>
+      </div>
+      <div class="ed-grid" data-n="2">
+        <figure style="background-image:url('fotos/01-edicao-2007/1a-edicao-2007-08-13-descerramento-placa-cemiterio-saudade.jpg')">
+          <figcaption>Programa oficial da 1ª Semana</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/01-edicao-2007/1a-edicao-2007-08-16-placa-cemiterio-saudade-2.jpg')">
+          <figcaption>Descerramento da placa — Cemitério da Saudade</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">Poucos dias depois da Lei 13.017/2007, a cidade descerrou uma placa no túmulo
+          de Hércules Florence, no Cemitério da Saudade, com familiares presentes. Ainda não se chamava
+          "Festival" — era a semente do que viria a ser. Fotos: blog
+          <a href="https://pro-memoria-de-campinas-sp.blogspot.com/2007/08/curiosidades-1a-semana-municipal-da.html" target="_blank" rel="noopener" style="color:var(--acento)">Pró-Memória de Campinas-SP →</a></p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:400px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>02</b>II · 2008</p>
+        <h2 class="ed-title">Os limites da fotografia</h2>
+      </div>
+      <div class="ed-clips">
+        <a class="ed-clip" href="https://www.puc-campinas.edu.br/abertas-inscricoes-para-semana-hercules-florence-e-seminario-imagem-e-atualidade-da-puc-campinas/" target="_blank" rel="noopener">
+          <span class="ed-clip-src">PUC-Campinas · 07/08/2008</span>
+          <span class="ed-clip-headline">"Abertas inscrições para Semana Hércules Florence e Seminário Imagem e Atualidade"</span>
+          <span class="ed-clip-link">Ler a matéria →</span>
+        </a>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">De 18 a 24 de agosto, a Câmara Municipal e a PUC-Campinas uniram forças na
+          "II Semana Hércules Florence", com o tema "Os limites da fotografia" e um concurso cujo
+          vencedor saiu no Jornal da PUC-Campinas.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:420px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>03</b>III · 2009</p>
+        <h2 class="ed-title">A céu aberto</h2>
+      </div>
+      <div class="ed-clips">
+        <a class="ed-clip" href="https://www.puc-campinas.edu.br/comeca-nesta-sexta-feira-3a-semana-hercules-florence-e-3o-seminario-imagem-e-atualidade/" target="_blank" rel="noopener">
+          <span class="ed-clip-src">PUC-Campinas · 13/08/2009</span>
+          <span class="ed-clip-headline">"Começa nesta sexta-feira 3ª Semana Hércules Florence e 3º Seminário Imagem e Atualidade"</span>
+          <span class="ed-clip-link">Ler a matéria →</span>
+        </a>
+        <a class="ed-clip" href="https://www.puc-campinas.edu.br/seminario-imagem-e-atualidade-da-puc-campinas-discute-a-natureza-na-fotografia/" target="_blank" rel="noopener">
+          <span class="ed-clip-src">PUC-Campinas · 17/08/2009</span>
+          <span class="ed-clip-headline">"Seminário Imagem e Atualidade da PUC-Campinas discute a natureza na fotografia"</span>
+          <span class="ed-clip-link">Ler a matéria →</span>
+        </a>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">De 14 a 21 de agosto, com curadoria de Iara Lis Schiavinatto na exposição
+          "A céu aberto: Fotografia e Demolição", apresentação da Orquestra Sinfônica de Campinas e a
+          entrega da Medalha Hércules Florence.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:420px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>04</b>IV · 2010</p>
+        <h2 class="ed-title">Homenagem ao inventor</h2>
+      </div>
+      <div class="ed-clips">
+        <a class="ed-clip" href="https://campinas.com.br/cultura/outros-cultura/2010/08/festival-hercule-florence-e-mes-da-fotografia-ocorrem-em-campinas/" target="_blank" rel="noopener">
+          <span class="ed-clip-src">campinas.com.br · 03/08/2010</span>
+          <span class="ed-clip-headline">"Festival Hercule Florence e mês da fotografia ocorrem em Campinas"</span>
+          <span class="ed-clip-link">Ler a matéria →</span>
+        </a>
+        <a class="ed-clip" href="https://campinas.com.br/cultura/outros-cultura/2010/08/festival-homenageia-hercules-florence-inventor-da-fotografia/" target="_blank" rel="noopener">
+          <span class="ed-clip-src">campinas.com.br · 06/08/2010</span>
+          <span class="ed-clip-headline">"Festival homenageia Hércules Florence, inventor da fotografia"</span>
+          <span class="ed-clip-link">Ler a matéria →</span>
+        </a>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">A abertura oficial da 4ª edição aconteceu em 5 de agosto, na CPFL Cultura, com
+          fotofilme espanhol e palestra de Walter Firmo. Dentro da programação nasceu a 1ª Caminhada
+          Fotográfica Hércules Florence — satélite que seguiria com numeração própria. Sem fotos
+          recuperadas até agora: a imprensa é a única fonte.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:400px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>05</b>V · 2011</p>
+        <h2 class="ed-title">V Festival Hercule Florence</h2>
+      </div>
+      <div class="ed-clips">
+        <a class="ed-clip" href="https://web.archive.org/web/20111126220551/http://www.festivalherculeflorence.com.br:80/" target="_blank" rel="noopener">
+          <span class="ed-clip-src">site oficial da época · arquivado nov/2011</span>
+          <span class="ed-clip-headline">"PUC-Campinas inclui a EXPOGRAM no V Festival Hercule Florence"</span>
+          <span class="ed-clip-link">Ver no Wayback Machine →</span>
+        </a>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">Confirmada pelo numeral romano V no site oficial da época, recuperado pelo
+          Wayback Machine: trouxe a EXPOGRAM da PUC-Campinas e um concurso de fotografia com resultado
+          do 1º ao 6º lugar. Também sem fotos recuperadas — só o registro do site restou.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:460px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>06</b>VI · 2012</p>
+        <h2 class="ed-title">Olhar Estrangeiro</h2>
+      </div>
+      <div class="ed-grid" data-n="3">
+        <figure style="background-image:url('fotos/06-edicao-2012-olhar-estrangeiro/6a-edicao-2012-walkingram-expogram-exposicao-1.jpg')">
+          <figcaption>WalkinGram / ExpoGram</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/06-edicao-2012-olhar-estrangeiro/6a-edicao-2012-10-23-expogram-fotos-varal-restaurante-capela.jpg')">
+          <figcaption>Fotos no varal — Restaurante da Capela</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/06-edicao-2012-olhar-estrangeiro/6a-edicao-2012-11-01-equipe-cep13000-tonicos-boteco.jpg')">
+          <figcaption>Equipe do projeto CEP 13000</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">A virada para a sexta edição veio num outubro de parcerias: fotos penduradas
+          em varais dentro de bares e restaurantes do centro, uma mostra sobre cartografias urbanas e o
+          projeto WalkinGram levando a câmera para dentro do comércio de Campinas. Encerrou com show do
+          Kid Vinil.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:400px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>07</b>VII · 2013</p>
+        <h2 class="ed-title">Impressões do Olhar</h2>
+      </div>
+      <div class="ed-grid" data-n="2">
+        <figure style="background-image:url('fotos/07-edicao-2013-impressoes-do-olhar/7a-edicao-2013-futebol-arte-abertura-exposicao-1.jpg')">
+          <figcaption>Abertura — Exposição Futebol|Arte</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/07-edicao-2013-impressoes-do-olhar/7a-edicao-2013-01-08-futebol-arte-iguatemi-campinas.jpg')">
+          <figcaption>Futebol|Arte — Shopping Iguatemi</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">O ano da exposição Futebol|Arte, com fotos de torcida tiradas no Moisés
+          Lucarelli, uma mostra com a National Geographic Brasil completando 13 anos e o registro das
+          manifestações de 2013 que tomaram as ruas do país.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:400px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>08</b>VIII · 2014</p>
+        <h2 class="ed-title">Oitava edição</h2>
+      </div>
+      <div class="ed-grid" data-n="2">
+        <figure style="background-image:url('fotos/08-edicao-2014/8a-edicao-2014-10-31-vernissage-retratos-do-piola.jpg')">
+          <figcaption>Vernissage "Retratos do Piola"</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/08-edicao-2014/8a-edicao-2014-10-31-vernissage-piola-publico-bar.jpg')">
+          <figcaption>Público na vernissage</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">Marcada pela vernissage "Retratos do Piola" e pelo projeto Giganto, que levou
+          retratos em grande formato para o Centro de Convivência Cultural. Fechou o ano com a mostra
+          "Comer com os Olhos", na Galeria Virtual eg2o.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:400px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>09</b>IX · 2015</p>
+        <h2 class="ed-title">Mulheres com Turbantes</h2>
+      </div>
+      <div class="ed-grid" data-n="2">
+        <figure style="background-image:url('fotos/09-edicao-2015-mulheres-com-turbantes/9a-edicao-2015-11-16-mulheres-com-turbantes-nyota.jpg')">
+          <figcaption>Grupo Nyota</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/09-edicao-2015-mulheres-com-turbantes/9a-edicao-2015-11-16-mulheres-com-turbantes-nyota-2.jpg')">
+          <figcaption>Casa de Cultura Fazenda Roseira</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">O Grupo Nyota, de mulheres negras de Salto, protagonizou a mostra fotografada
+          na Casa de Cultura Fazenda Roseira — um retrato de ancestralidade e resistência, uma das
+          edições mais lembradas pelo público até hoje.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:860px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>10</b>X · 2017</p>
+        <h2 class="ed-title">Febre Criativa</h2>
+      </div>
+      <div class="ed-grid" data-n="6">
+        <figure style="background-image:url('fotos/10-edicao-2017-febre-criativa/10a-edicao-2017-04-24-show-encerramento-banda.jpg')">
+          <figcaption>Show de encerramento</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/10-edicao-2017-febre-criativa/10a-edicao-2017-04-24-vocalista-microfone.jpg')">
+          <figcaption>Vocalista da banda</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/10-edicao-2017-febre-criativa/10a-edicao-2017-04-24-baterista-camiseta-festival.jpg')">
+          <figcaption>Baterista — camiseta do festival</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/10-edicao-2017-febre-criativa/10a-edicao-2017-04-24-vocalista-microfone-2.jpg')">
+          <figcaption>Show — Febre Criativa</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/10-edicao-2017-febre-criativa/10a-edicao-2017-04-24-show-publico-pb.jpg')">
+          <figcaption>Público do show</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/10-edicao-2017-febre-criativa/10a-edicao-2017-04-24-crianca-publico.jpg')">
+          <figcaption>Criança no público</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">Depois de uma convocatória que selecionou três fotógrafos para exposições
+          individuais, o festival tomou a Estação Cultura em abril com shows, oficinas e o Queimão
+          Fotográfico encerrando a programação.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:400px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>11</b>XI · 2018</p>
+        <h2 class="ed-title">Décima primeira edição</h2>
+      </div>
+      <div class="ed-grid" data-n="2">
+        <figure style="background-image:url('fotos/11-edicao-2018/11a-edicao-2018-foto-ceasa-fotografo-pb.jpg')">
+          <figcaption>Projeto Foto Ceasa</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/11-edicao-2018/11a-edicao-2018-foto-ceasa-fotografa-girassois.jpg')">
+          <figcaption>Registro no CEASA Campinas</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">Ano do projeto Foto Ceasa, documentando o maior entreposto de hortifrúti da
+          região, e da parceria com a Unicamp na IV Mostra de Fotografia. Uma mostra com 16 câmeras
+          analógicas emprestadas refletiu sobre o incêndio do Museu Nacional, ocorrido naquele ano.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:400px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>12</b>XII · 2021</p>
+        <h2 class="ed-title">A volta pós-pandemia</h2>
+      </div>
+      <div class="ed-grid" data-n="2">
+        <figure style="background-image:url('fotos/12-edicao-2021-xii/12a-edicao-2021-10-20-rurais-trabalhador-rural-pb.jpg')">
+          <figcaption>Livro "RURAIS" — Antonio Mozeto</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/12-edicao-2021-xii/12a-edicao-2021-10-20-rurais-antonio-mozeto-retrato-pb.jpg')">
+          <figcaption>RURAIS — retrato de trabalhador rural</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">A pandemia empurrou o festival para 2021, viabilizado pelo Edital PROAC depois
+          de dois anos sem programação. Voltou com o lançamento do livro "RURAIS", de Antonio Mozeto, e
+          curadoria coletiva de Baixo Ribeiro, Rochelle Costi e Sylvia Furegatti.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:400px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>13</b>XIII · 2023</p>
+        <h2 class="ed-title">O festival foi pra rua</h2>
+      </div>
+      <div class="ed-grid" data-n="2">
+        <figure style="background-image:url('fotos/13-edicao-2023-xiii/13a-edicao-2023-09-16-colagem-lambe-logo-hfxiii.jpg')">
+          <figcaption>Colagem Lambe — Feira Sub</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/13-edicao-2023-xiii/13a-edicao-2023-09-16-colagem-lambe-mural-artista.jpg')">
+          <figcaption>Ação de arte urbana</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">A Feira Sub e a ação "Colagem Lambe" levaram arte urbana aos muros do centro
+          de Campinas, e o ano fechou com o Circuito Livre, mostra coletiva no Red Radisson Hotel.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:400px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>14</b>XIV · 2024</p>
+        <h2 class="ed-title">Oficinas pela cidade</h2>
+      </div>
+      <div class="ed-grid" data-n="2">
+        <figure style="background-image:url('fotos/14-edicao-2024-xiv/14a-edicao-2024-08-31-oficina-fotografia-smartphone-banner-hfxiv.jpg')">
+          <figcaption>Fotografia Criativa com Smartphone</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/14-edicao-2024-xiv/14a-edicao-2024-08-24-oficina-brincando-com-imagens-banner-hfxiv.jpg')">
+          <figcaption>Oficina "Brincando com as Imagens"</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">Oficinas gratuitas espalhadas por espaços como a Casa de Cultura Fazenda
+          Roseira, com apoio do PROAC e tradução em Libras. No mesmo ano estreou a Sala Hercule
+          Florence, espaço permanente dedicado ao fotógrafo-inventor.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:560px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>15</b>XV · 2025</p>
+        <h2 class="ed-title">Décima quinta edição</h2>
+      </div>
+      <div class="ed-grid" data-n="3">
+        <figure style="background-image:url('fotos/15-edicao-2025-xv/15a-edicao-2025-11-08-documentario-amazonia-salgado.jpg')">
+          <figcaption>Documentário "Amazônia" — Sebastião Salgado</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/15-edicao-2025-xv/15a-edicao-2025-11-08-exposicao-cidades-invisiveis-tadeu-bianconi.jpg')">
+          <figcaption>"Cidades In Visíveis" — Tadeu Bianconi</figcaption>
+        </figure>
+        <figure style="background-image:url('fotos/15-edicao-2025-xv/15a-edicao-2025-10-31-exposicao-observacoes-sentimentais-suzana-barretto.jpg')">
+          <figcaption>"Observações Sentimentais" — Suzana Barretto</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">Entre 31 de outubro e 10 de novembro, o festival ocupou o Centro de Convivência
+          e o MIS Campinas: exposições, mesas de debate e a exibição do documentário "Amazônia", de
+          Sebastião Salgado.</p>
+      </div>
+    </article>
+
+    <article class="ed" style="width:560px" tabindex="0">
+      <div class="ed-head">
+        <p class="ed-eyebrow"><b>16</b>XVI · 2026 · atual</p>
+        <h2 class="ed-title">Territórios em Transformação</h2>
+      </div>
+      <div class="ed-grid" data-n="3">
+        <figure style="background-image:url('img/rua-fotos-900.webp')">
+          <figcaption>Rua ocupada por fotografias</figcaption>
+        </figure>
+        <figure style="background-image:url('img/muro-triangulo-900.webp')">
+          <figcaption>Intervenção em muro</figcaption>
+        </figure>
+        <figure style="background-image:url('img/publico-cameras-900.webp')">
+          <figcaption>Público com câmeras</figcaption>
+        </figure>
+      </div>
+      <div class="ed-text-wrap">
+        <p class="ed-text">A edição em cartaz propõe uma reflexão sobre preservação ambiental e memória
+          social: da Expedição Langsdorff à crise climática, de 5 a 23 de agosto, ocupando ruas, praças
+          e instituições de Campinas.</p>
+      </div>
+    </article>
+
+  </div>
+</div>
+
+<footer class="tl-foot wrap">
+  Acervo: Facebook oficial do festival, imprensa regional (campinas.com.br, Correio Popular,
+  PUC-Campinas), o blog Pró-Memória de Campinas-SP e materiais de curadoria da Communitas. As 16
+  edições estão confirmadas por fonte; a 2ª a 5ª (2008–2011) só pela imprensa/releases da época, sem
+  fotos recuperadas. Mais detalhes em <a href="notas-curadoria.md">notas de curadoria</a>.
+</footer>
+
+<script>
+  var track = document.getElementById('track');
+  document.getElementById('navPrev').addEventListener('click', function () {
+    track.scrollBy({ left: -480, behavior: 'smooth' });
+  });
+  document.getElementById('navNext').addEventListener('click', function () {
+    track.scrollBy({ left: 480, behavior: 'smooth' });
+  });
+  track.addEventListener('wheel', function (e) {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      track.scrollLeft += e.deltaY;
+    }
+  }, { passive: false });
+</script>
+
+</body>
+</html>
