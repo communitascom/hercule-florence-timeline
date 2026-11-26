@@ -373,3 +373,42 @@ atrás de fotos reais em cada fonte já identificada, não só do texto:
 **Decisão do Junior:** manter a 2ª-5ª edição só com o cartão de "recorte de
 imprensa" (chamada + link), sem imagem — nada de imagem ilustrativa/gerada no
 lugar de foto real.
+
+## Botão "Matérias" por edição (26/11/2026)
+
+A pedido do Junior ("senti falta das matérias dos outros anos... a 15ª e a
+16ª tiveram várias"), adicionei um botão **"Matérias (N)"** embaixo de cada
+uma das 16 edições na linha do tempo. Ao clicar, abre um modal com a lista
+completa de matérias de imprensa daquela edição (fonte, data, chamada e
+link), no mesmo visual de "recorte de imprensa" já usado nos cartões da
+1ª-5ª edição.
+
+Pra isso, voltei a cada edição (6ª-16ª) atrás de matérias que ainda não
+tinham link, usando a busca interna do Correio Popular (correio.rac.com.br)
+e busca na web para a 15ª e a 16ª, que têm cobertura bem mais recente e
+ampla. Resultado — quantidade de matérias linkadas por edição:
+
+| Edição | Matérias | Fontes novas desta rodada |
+|---|---|---|
+| 1ª (2007) | 1 | — (já tinha) |
+| 2ª (2008) | 1 | — (já tinha) |
+| 3ª (2009) | 2 | — (já tinha) |
+| 4ª (2010) | 2 | — (já tinha) |
+| 5ª (2011) | 2 | — (já tinha) |
+| 6ª (2012) | 2 | — (já tinha, Correio Popular) |
+| 7ª (2013) | 1 | — (já tinha, Correio Popular) |
+| 8ª (2014) | 1 | — (já tinha, Correio Popular) |
+| 9ª (2015) | 2 | Correio Popular (busca interna) |
+| 10ª (2017) | 1 | — (já tinha, Correio Popular) |
+| 11ª (2018) | 2 | Correio Popular (busca interna) |
+| 12ª (2021) | 1 | — (já tinha, Correio Popular) |
+| 13ª (2023) | 1 | — (já tinha, Correio Popular) |
+| 14ª (2024) | 2 | Correio Popular (busca interna) |
+| 15ª (2025) | 9 | campinas.com.br, Carta Campinas, Correio Popular, Diário Campineiro, Jornal da Unicamp, Como Fotografar |
+| 16ª (2026) | 9 | Correio Popular, Band Multi, A Cidade ON, Diário Campineiro, saibamais.jor.br, site oficial |
+
+Todos os links foram verificados (abertos/consultados via busca interna dos
+próprios sites, não inventados). A 15ª e a 16ª concentram a cobertura mais
+rica porque são as edições mais recentes — jornais locais, portais
+universitários (Unicamp) e sites especializados em fotografia cobriram bem
+mais que nos anos 2010.

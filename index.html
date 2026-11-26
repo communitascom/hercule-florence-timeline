@@ -78,7 +78,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   overflow-x: auto; scroll-snap-type: x proximity;
   scroll-padding-left: clamp(20px, 4vw, 56px);
   padding: 4px clamp(20px, 4vw, 56px) 30px;
-  height: clamp(440px, 60vh, 580px);
+  height: clamp(480px, 64vh, 620px);
   scrollbar-width: thin; scrollbar-color: var(--grey-4) transparent;
 }
 .track::-webkit-scrollbar { height: 6px; }
@@ -175,9 +175,55 @@ figcaption {
 }
 
 @media (max-width: 880px) {
-  .track { gap: 10px; padding: 4px 18px 26px; height: clamp(420px, 72vh, 560px); }
+  .track { gap: 10px; padding: 4px 18px 26px; height: clamp(460px, 78vh, 600px); }
   .ed-text-wrap { height: clamp(90px, 16vh, 130px); }
 }
+
+/* ─── BOTÃO "MATÉRIAS" + MODAL ────────────────────────── */
+.ed-press-btn {
+  margin-top: 11px; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--grey-2); border: 1px solid var(--grey-4); border-radius: 20px;
+  padding: 7px 15px; transition: color 0.3s, background 0.3s, border-color 0.3s;
+}
+.ed-press-btn:hover { color: var(--white); background: var(--ink); border-color: var(--ink); }
+.ed-press-count { color: var(--acento); font-weight: 500; }
+.ed-press-btn:hover .ed-press-count { color: var(--acento-lt); }
+
+.press-overlay {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: rgba(14,13,11,0.62);
+  opacity: 0; pointer-events: none; transition: opacity 0.3s var(--ease);
+}
+.press-overlay.open { opacity: 1; pointer-events: auto; }
+.press-modal {
+  width: 100%; max-width: 640px; max-height: 82vh; overflow-y: auto;
+  background: var(--white); border-radius: 6px; box-shadow: var(--shadow);
+  padding: clamp(24px, 4vw, 40px);
+  transform: translateY(14px); transition: transform 0.35s var(--ease);
+}
+.press-overlay.open .press-modal { transform: none; }
+.press-modal-head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+  margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--rule);
+}
+.press-modal-eyebrow {
+  display: block; font-size: 9.5px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--acento); margin-bottom: 6px;
+}
+.press-modal-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(22px, 3vw, 30px); line-height: 1; }
+.press-modal-close {
+  flex: none; width: 32px; height: 32px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--white-2);
+  transition: background 0.3s;
+}
+.press-modal-close:hover { background: var(--ink); }
+.press-modal-close svg { width: 14px; height: 14px; stroke: var(--ink); fill: none; stroke-width: 2; transition: stroke 0.3s; }
+.press-modal-close:hover svg { stroke: var(--white); }
+.press-modal-list { display: flex; flex-direction: column; gap: 10px; }
+.press-modal-empty { font-size: 13px; color: var(--grey-3); font-weight: 300; }
 
 /* ─── RODAPÉ ───────────────────────────────────────────── */
 .tl-foot {
@@ -237,6 +283,7 @@ figcaption {
           "Festival" — era a semente do que viria a ser. Fotos: blog
           <a href="https://pro-memoria-de-campinas-sp.blogspot.com/2007/08/curiosidades-1a-semana-municipal-da.html" target="_blank" rel="noopener" style="color:var(--acento)">Pró-Memória de Campinas-SP →</a></p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:400px" tabindex="0">
@@ -256,6 +303,7 @@ figcaption {
           "II Semana Hércules Florence", com o tema "Os limites da fotografia" e um concurso cujo
           vencedor saiu no Jornal da PUC-Campinas.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:420px" tabindex="0">
@@ -280,6 +328,7 @@ figcaption {
           "A céu aberto: Fotografia e Demolição", apresentação da Orquestra Sinfônica de Campinas e a
           entrega da Medalha Hércules Florence.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:420px" tabindex="0">
@@ -305,6 +354,7 @@ figcaption {
           Fotográfica Hércules Florence — satélite que seguiria com numeração própria. Sem fotos
           recuperadas até agora: a imprensa é a única fonte.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:400px" tabindex="0">
@@ -324,6 +374,7 @@ figcaption {
           Wayback Machine: trouxe a EXPOGRAM da PUC-Campinas e um concurso de fotografia com resultado
           do 1º ao 6º lugar. Também sem fotos recuperadas — só o registro do site restou.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:460px" tabindex="0">
@@ -348,6 +399,7 @@ figcaption {
           projeto WalkinGram levando a câmera para dentro do comércio de Campinas. Encerrou com show do
           Kid Vinil.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:400px" tabindex="0">
@@ -368,6 +420,7 @@ figcaption {
           Lucarelli, uma mostra com a National Geographic Brasil completando 13 anos e o registro das
           manifestações de 2013 que tomaram as ruas do país.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:400px" tabindex="0">
@@ -388,6 +441,7 @@ figcaption {
           retratos em grande formato para o Centro de Convivência Cultural. Fechou o ano com a mostra
           "Comer com os Olhos", na Galeria Virtual eg2o.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:400px" tabindex="0">
@@ -408,6 +462,7 @@ figcaption {
           na Casa de Cultura Fazenda Roseira — um retrato de ancestralidade e resistência, uma das
           edições mais lembradas pelo público até hoje.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:860px" tabindex="0">
@@ -440,6 +495,7 @@ figcaption {
           individuais, o festival tomou a Estação Cultura em abril com shows, oficinas e o Queimão
           Fotográfico encerrando a programação.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:400px" tabindex="0">
@@ -460,6 +516,7 @@ figcaption {
           região, e da parceria com a Unicamp na IV Mostra de Fotografia. Uma mostra com 16 câmeras
           analógicas emprestadas refletiu sobre o incêndio do Museu Nacional, ocorrido naquele ano.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:400px" tabindex="0">
@@ -480,6 +537,7 @@ figcaption {
           de dois anos sem programação. Voltou com o lançamento do livro "RURAIS", de Antonio Mozeto, e
           curadoria coletiva de Baixo Ribeiro, Rochelle Costi e Sylvia Furegatti.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:400px" tabindex="0">
@@ -499,6 +557,7 @@ figcaption {
         <p class="ed-text">A Feira Sub e a ação "Colagem Lambe" levaram arte urbana aos muros do centro
           de Campinas, e o ano fechou com o Circuito Livre, mostra coletiva no Red Radisson Hotel.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:400px" tabindex="0">
@@ -519,6 +578,7 @@ figcaption {
           Roseira, com apoio do PROAC e tradução em Libras. No mesmo ano estreou a Sala Hercule
           Florence, espaço permanente dedicado ao fotógrafo-inventor.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:560px" tabindex="0">
@@ -542,6 +602,7 @@ figcaption {
           e o MIS Campinas: exposições, mesas de debate e a exibição do documentário "Amazônia", de
           Sebastião Salgado.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
     <article class="ed" style="width:560px" tabindex="0">
@@ -565,8 +626,24 @@ figcaption {
           social: da Expedição Langsdorff à crise climática, de 5 a 23 de agosto, ocupando ruas, praças
           e instituições de Campinas.</p>
       </div>
+      <button class="ed-press-btn" type="button">Matérias <span class="ed-press-count"></span> →</button>
     </article>
 
+  </div>
+</div>
+
+<div class="press-overlay" id="pressOverlay">
+  <div class="press-modal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+    <div class="press-modal-head">
+      <div>
+        <span class="press-modal-eyebrow" id="pmEyebrow"></span>
+        <h3 class="press-modal-title" id="pmTitle"></h3>
+      </div>
+      <button class="press-modal-close" id="pmClose" type="button" aria-label="Fechar">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="press-modal-list" id="pmList"></div>
   </div>
 </div>
 
@@ -591,6 +668,123 @@ figcaption {
       track.scrollLeft += e.deltaY;
     }
   }, { passive: false });
+
+  // ─── Matérias de imprensa, por edição ───────────────────
+  var PRESS = {
+    "01": [
+      { src: "blog Pró-Memória de Campinas-SP", date: "13/08/2007", headline: "Curiosidades: 1ª Semana Municipal da Fotografia \"Hércules Florence\"", url: "https://pro-memoria-de-campinas-sp.blogspot.com/2007/08/curiosidades-1a-semana-municipal-da.html" }
+    ],
+    "02": [
+      { src: "PUC-Campinas", date: "07/08/2008", headline: "Abertas inscrições para Semana Hércules Florence e Seminário Imagem e Atualidade", url: "https://www.puc-campinas.edu.br/abertas-inscricoes-para-semana-hercules-florence-e-seminario-imagem-e-atualidade-da-puc-campinas/" }
+    ],
+    "03": [
+      { src: "PUC-Campinas", date: "13/08/2009", headline: "Começa nesta sexta-feira 3ª Semana Hércules Florence e 3º Seminário Imagem e Atualidade", url: "https://www.puc-campinas.edu.br/comeca-nesta-sexta-feira-3a-semana-hercules-florence-e-3o-seminario-imagem-e-atualidade/" },
+      { src: "PUC-Campinas", date: "17/08/2009", headline: "Seminário Imagem e Atualidade da PUC-Campinas discute a natureza na fotografia", url: "https://www.puc-campinas.edu.br/seminario-imagem-e-atualidade-da-puc-campinas-discute-a-natureza-na-fotografia/" }
+    ],
+    "04": [
+      { src: "campinas.com.br", date: "03/08/2010", headline: "Festival Hercule Florence e mês da fotografia ocorrem em Campinas", url: "https://campinas.com.br/cultura/outros-cultura/2010/08/festival-hercule-florence-e-mes-da-fotografia-ocorrem-em-campinas/" },
+      { src: "campinas.com.br", date: "06/08/2010", headline: "Festival homenageia Hércules Florence, inventor da fotografia", url: "https://campinas.com.br/cultura/outros-cultura/2010/08/festival-homenageia-hercules-florence-inventor-da-fotografia/" }
+    ],
+    "05": [
+      { src: "site oficial (Wayback Machine)", date: "nov/2011", headline: "PUC-Campinas inclui a EXPOGRAM no V Festival Hercule Florence", url: "https://web.archive.org/web/20111126220551/http://www.festivalherculeflorence.com.br:80/" },
+      { src: "PUC-Campinas", date: "13/10/2011", headline: "V Festival de Fotografia de Campinas Hercule Florence aborda temáticas contemporâneas da fotografia", url: "https://www.puc-campinas.edu.br/v-festival-de-fotografia-de-campinas-hercule-florence-aborda-tematicas-contemporaneas-da-fotografia/" }
+    ],
+    "06": [
+      { src: "Correio Popular", date: "22/10/2012", headline: "Kid Vinil encerra Festival Hercule Florence, em Campinas", url: "https://correio.rac.com.br/kid-vinil-encerra-festival-hercule-florence-em-campinas-1.1087446" },
+      { src: "Correio Popular", date: "24/10/2012", headline: "Festival Hercule Florence termina esta semana no Mis Campinas", url: "https://correio.rac.com.br/festival-hercule-florence-termina-esta-semana-no-mis-campinas-1.1088345" }
+    ],
+    "07": [
+      { src: "Correio Popular", date: "02/10/2013", headline: "Começa em Campinas o 7º Festival Hercule Florence", url: "https://correio.rac.com.br/entretenimento/comeca-em-campinas-o-7-festival-hercule-florence-1.943895" }
+    ],
+    "08": [
+      { src: "Correio Popular", date: "10/10/2014", headline: "Festival Hercule Florence começa nesta sexta em Campinas", url: "https://correio.rac.com.br/festival-hercule-florence-comeca-nesta-sexta-em-campinas-1.869343" }
+    ],
+    "09": [
+      { src: "Correio Popular", date: "08/10/2015", headline: "Quatro novas exposições estão em cartaz em Campinas", url: "https://correio.rac.com.br/entretenimento/quatro-novas-exposic-es-est-o-em-cartaz-em-campinas-1.792408" },
+      { src: "Correio Popular", date: "22/10/2015", headline: "Fotógrafo cubano registra Campinas para exposição", url: "https://correio.rac.com.br/entretenimento/fotografo-cubano-registra-campinas-para-exposic-o-1.790890" }
+    ],
+    "10": [
+      { src: "Correio Popular / Revista Metrópole", date: "23/04/2017", headline: "Festival Hercule Florence: Flashes para a cidade", url: "https://correio.rac.com.br/festival-hercule-florence-flashes-para-a-cidade-1.759908" }
+    ],
+    "11": [
+      { src: "Correio Popular", date: "08/05/2018", headline: "Caminhada fotográfica encerra o Foto Ceasa", url: "https://correio.rac.com.br/campinasermc/caminhada-fotografica-encerra-o-foto-ceasa-1.712150" },
+      { src: "Correio Popular", date: "13/06/2018", headline: "Exposição é prorrogada até dia 23 de junho", url: "https://correio.rac.com.br/entretenimento/exposic-o-e-prorrogada-ate-dia-23-de-junho-1.1215552" }
+    ],
+    "12": [
+      { src: "Correio Popular", date: "28/01/2021", headline: "Festival Hercule Florence coloca Campinas no foco", url: "https://correio.rac.com.br/entretenimento/festival-hercule-florence-coloca-campinas-no-foco-1.23427" }
+    ],
+    "13": [
+      { src: "Correio Popular", date: "30/07/2023", headline: "Festival Hercule Florence de Campinas revê conceitos da fotografia", url: "https://correio.rac.com.br/entretenimento/festival-hercule-florence-de-campinas-reve-conceitos-da-fotografia-1.1401816" }
+    ],
+    "14": [
+      { src: "Correio Popular", date: "15/05/2024", headline: "Campinas homenageia o pai da fotografia", url: "https://correio.rac.com.br/entretenimento/campinas-homenageia-o-pai-da-fotografia-1.1513290" },
+      { src: "Correio Popular", date: "22/05/2024", headline: "Hercule Florence ganha espaço no MIS", url: "https://correio.rac.com.br/entretenimento/hercule-florence-ganha-espaco-no-mis-1.1516201" }
+    ],
+    "15": [
+      { src: "campinas.com.br", date: "out/2025", headline: "Festival Hercule Florence em Campinas reúne caminhadas fotográficas, exposições, oficinas, debates e filmes", url: "https://campinas.com.br/agenda/festival-hercule-florence-em-campinas-reune-caminhadas-fotograficas-exposicoes-oficinas-debates-e-filmes/" },
+      { src: "Carta Campinas", date: "out/2025", headline: "Festival Hercule Florence homenageia Sebastião Salgado e coloca no foco a fotografia humanista", url: "https://cartacampinas.com.br/2025/10/festival-hercule-florence-homenageia-sebastiao-salgado-e-coloca-no-foco-a-fotografia-humanista/" },
+      { src: "Correio Popular", date: "28/10/2025", headline: "Território da imagem", url: "https://correio.rac.com.br/entretenimento/territorio-da-imagem-1.1726959" },
+      { src: "Diário Campineiro", date: "out/2025", headline: "15º Festival Hercule Florence fará da fotografia um território de encontros, expedições e experiências imersivas", url: "https://diariocampineiro.com.br/15o-festival-hercule-florence-fara-da-fotografia-um-territorio-de-encontros-expedicoes-e-experiencias-imersivas/" },
+      { src: "Jornal da Unicamp", date: "22/10/2025", headline: "Atividades do \"Festival Hercule Florence de Fotografia 2025\" serão realizadas na Unicamp nos dias 6 e 7 de novembro", url: "https://jornal.unicamp.br/agenda/2025/10/22/atividades-do-festival-hercule-florence-de-fotografia-2025-serao-realizadas-na-unicamp-nos-dias-6-e-7-de-novembro/" },
+      { src: "Diário Campineiro", date: "nov/2025", headline: "15º Festival Hercule Florence transforma Campinas em território de imagem, memória e experiência sensorial", url: "https://diariocampineiro.com.br/15o-festival-hercule-florence-transforma-campinas-em-territorio-de-imagem-memoria-e-experiencia-sensorial/" },
+      { src: "Correio Popular", date: "08/11/2025", headline: "Foco na Fotografia", url: "https://correio.rac.com.br/entretenimento/foco-na-fotografia-1.1731871" },
+      { src: "Carta Campinas", date: "nov/2025", headline: "Reta final do Festival Hercule Florence tem história, ciência, poesia, assombrações e Sebastião Salgado", url: "https://cartacampinas.com.br/2025/11/reta-final-do-festival-hercule-florence-tem-historia-ciencia-poesia-assombracoes-e-sebastiao-salgado/" },
+      { src: "Como Fotografar", date: "2025", headline: "Festival Hercule Florence de Fotografia 2025: Exposições, Oficinas e Caminhadas em Campinas", url: "https://comofotografar.com.br/hercule-florence-de-fotografia-2025-campinas/" }
+    ],
+    "16": [
+      { src: "Correio Popular", date: "26/07/2026", headline: "A oitava arte", url: "https://correio.rac.com.br/entretenimento/a-oitava-arte-1.1833449" },
+      { src: "Band Multi", date: "20/07/2026", headline: "Campinas recebe exposição \"A Oitava Arte: Fotografia, Arte Essencial II\"", url: "https://www.band.com.br/band-multi/campinas-e-regiao/noticias/campinas-recebe-exposicao-a-oitava-arte-fotografia-arte-essencial-ii-202607201100" },
+      { src: "A Cidade ON", date: "ago/2026", headline: "Festival Hercule Florence: programação terá exposições e oficinas", url: "https://www.acidadeon.com/campinas/lazer-e-cultura/festival-hercule-florence-veja-programacao-tera-exposicoes-e-oficinas-veja-programacao/" },
+      { src: "Diário Campineiro", date: "ago/2026", headline: "Festival Hercule Florence debaterá fotografia e crise climática no Sesc Campinas", url: "https://diariocampineiro.com.br/festival-hercule-florence-debatera-fotografia-e-crise-climatica-no-sesc-campinas/" },
+      { src: "Correio Popular", date: "11/08/2026", headline: "Territórios do olhar", url: "https://correio.rac.com.br/entretenimento/territorios-do-olhar-1.1840041" },
+      { src: "saibamais.jor.br", date: "ago/2026", headline: "Fotografia potiguar ganha espaço no Festival Hercule Florence 2026", url: "https://saibamais.jor.br/2026/08/fotografia-potiguar-ganha-espaco-no-festival-hercule-florence-2026/" },
+      { src: "Diário Campineiro", date: "ago/2026", headline: "Festival Hercule Florence transforma Campinas em um laboratório da memória e da crise climática", url: "https://diariocampineiro.com.br/festival-hercule-florence-transforma-campinas-em-um-laboratorio-da-memoria-e-da-crise-climatica/" },
+      { src: "Correio Popular", date: "21/08/2026", headline: "Festival Hercule Florence chega ao fim com oficinas, exposições e ações pela cidade", url: "https://correio.rac.com.br/entretenimento/festival-hercule-florence-chega-ao-fim-com-oficinas-exposic-es-e-ac-es-pela-cidade-1.1844445" },
+      { src: "site oficial", date: "2026", headline: "16º Festival Hercule Florence de Fotografia · Campinas · Agosto 2026", url: "https://festivalherculeflorence.com.br/" }
+    ]
+  };
+
+  // Preenche a contagem em cada botão
+  document.querySelectorAll('.ed').forEach(function (ed) {
+    var num = ed.querySelector('.ed-eyebrow b').textContent.trim();
+    var btn = ed.querySelector('.ed-press-btn');
+    var count = ed.querySelector('.ed-press-count');
+    var items = PRESS[num] || [];
+    count.textContent = '(' + items.length + ')';
+    if (items.length === 0) { btn.style.display = 'none'; }
+    btn.addEventListener('click', function () { openPressModal(ed, num); });
+  });
+
+  var overlay = document.getElementById('pressOverlay');
+  var pmEyebrow = document.getElementById('pmEyebrow');
+  var pmTitle = document.getElementById('pmTitle');
+  var pmList = document.getElementById('pmList');
+
+  function openPressModal(ed, num) {
+    var eyebrowFull = ed.querySelector('.ed-eyebrow').textContent.trim();
+    var eyebrow = parseInt(num, 10) + 'ª edição · ' + eyebrowFull.slice(num.length).trim();
+    var title = ed.querySelector('.ed-title').textContent.trim();
+    var items = PRESS[num] || [];
+    pmEyebrow.textContent = eyebrow;
+    pmTitle.textContent = title;
+    pmList.innerHTML = items.length ? items.map(function (i) {
+      return '<a class="ed-clip" href="' + i.url + '" target="_blank" rel="noopener">' +
+        '<span class="ed-clip-src">' + i.src + (i.date ? ' · ' + i.date : '') + '</span>' +
+        '<span class="ed-clip-headline">&ldquo;' + i.headline + '&rdquo;</span>' +
+        '<span class="ed-clip-link">Ler a matéria →</span></a>';
+    }).join('') : '<p class="press-modal-empty">Nenhuma matéria encontrada até agora para esta edição.</p>';
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePressModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('pmClose').addEventListener('click', closePressModal);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closePressModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePressModal(); });
 </script>
 
 </body>
