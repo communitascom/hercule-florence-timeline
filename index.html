@@ -128,7 +128,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .ed-grid[data-n="6"] { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); }
 
 figure {
-  position: relative; margin: 0; overflow: hidden;
+  position: relative; margin: 0; overflow: hidden; cursor: pointer;
   background-size: cover; background-position: center;
   filter: grayscale(82%) contrast(1.05) brightness(0.97);
   transition: filter 0.6s var(--ease), transform 0.9s var(--ease);
@@ -224,6 +224,42 @@ figcaption {
 .press-modal-close:hover svg { stroke: var(--white); }
 .press-modal-list { display: flex; flex-direction: column; gap: 10px; }
 .press-modal-empty { font-size: 13px; color: var(--grey-3); font-weight: 300; }
+
+/* ─── MODAL DE FOTO (lightbox) ───────────────────────────── */
+.photo-overlay {
+  position: fixed; inset: 0; z-index: 60;
+  display: flex; align-items: center; justify-content: center; padding: 30px;
+  background: rgba(14,13,11,0.92);
+  opacity: 0; pointer-events: none; transition: opacity 0.3s var(--ease);
+}
+.photo-overlay.open { opacity: 1; pointer-events: auto; }
+.photo-modal-img-wrap {
+  max-width: min(1100px, 92vw); max-height: 84vh;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  transform: scale(0.97); transition: transform 0.35s var(--ease);
+}
+.photo-overlay.open .photo-modal-img-wrap { transform: none; }
+.photo-modal-img-wrap img {
+  max-width: 100%; max-height: 72vh; width: auto; height: auto;
+  object-fit: contain; border-radius: 3px; box-shadow: var(--shadow);
+}
+.photo-modal-caption {
+  font-size: 12.5px; color: var(--white-2); text-align: center; max-width: 640px; line-height: 1.5;
+}
+.photo-modal-close, .photo-modal-nav {
+  position: absolute; z-index: 2; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(255,255,255,0.12);
+  transition: background 0.3s;
+}
+.photo-modal-close:hover, .photo-modal-nav:hover { background: rgba(255,255,255,0.24); }
+.photo-modal-close svg, .photo-modal-nav svg { stroke: var(--white); fill: none; stroke-width: 2; }
+.photo-modal-close { top: 20px; right: 20px; width: 40px; height: 40px; }
+.photo-modal-close svg { width: 16px; height: 16px; }
+.photo-modal-nav { top: 50%; transform: translateY(-50%); width: 46px; height: 46px; }
+.photo-modal-nav svg { width: 18px; height: 18px; }
+.photo-modal-nav.prev { left: 20px; }
+.photo-modal-nav.next { right: 20px; }
+@media (max-width: 640px) { .photo-modal-nav { display: none; } }
 
 /* ─── RODAPÉ ───────────────────────────────────────────── */
 .tl-foot {
@@ -647,6 +683,22 @@ figcaption {
   </div>
 </div>
 
+<div class="photo-overlay" id="photoOverlay">
+  <button class="photo-modal-close" id="photoClose" type="button" aria-label="Fechar">
+    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <button class="photo-modal-nav prev" id="photoPrev" type="button" aria-label="Foto anterior">
+    <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <button class="photo-modal-nav next" id="photoNext" type="button" aria-label="Próxima foto">
+    <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+  <div class="photo-modal-img-wrap">
+    <img id="photoImg" src="" alt="">
+    <p class="photo-modal-caption" id="photoCaption"></p>
+  </div>
+</div>
+
 <footer class="tl-foot wrap">
   Acervo: Facebook oficial do festival, imprensa regional (campinas.com.br, Correio Popular,
   PUC-Campinas), o blog Pró-Memória de Campinas-SP e materiais de curadoria da Communitas. As 16
@@ -784,7 +836,64 @@ figcaption {
 
   document.getElementById('pmClose').addEventListener('click', closePressModal);
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closePressModal(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePressModal(); });
+
+  // ─── Modal de foto (lightbox) ────────────────────────────
+  var photoOverlay = document.getElementById('photoOverlay');
+  var photoImg = document.getElementById('photoImg');
+  var photoCaption = document.getElementById('photoCaption');
+  var currentFigures = [];
+  var currentIndex = 0;
+
+  function getBgUrl(fig) {
+    var m = fig.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+    return m ? m[1] : '';
+  }
+
+  function showPhoto(index) {
+    currentIndex = (index + currentFigures.length) % currentFigures.length;
+    var fig = currentFigures[currentIndex];
+    photoImg.src = getBgUrl(fig);
+    var cap = fig.querySelector('figcaption');
+    photoCaption.textContent = cap ? cap.textContent : '';
+  }
+
+  function openPhotoModal(figuresArr, index) {
+    currentFigures = figuresArr;
+    showPhoto(index);
+    photoOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePhotoModal() {
+    photoOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.ed-grid').forEach(function (grid) {
+    var figs = Array.prototype.slice.call(grid.querySelectorAll('figure'));
+    figs.forEach(function (fig, i) {
+      fig.addEventListener('click', function () { openPhotoModal(figs, i); });
+    });
+  });
+
+  document.getElementById('photoClose').addEventListener('click', closePhotoModal);
+  document.getElementById('photoPrev').addEventListener('click', function (e) {
+    e.stopPropagation(); showPhoto(currentIndex - 1);
+  });
+  document.getElementById('photoNext').addEventListener('click', function (e) {
+    e.stopPropagation(); showPhoto(currentIndex + 1);
+  });
+  photoOverlay.addEventListener('click', function (e) { if (e.target === photoOverlay) closePhotoModal(); });
+
+  document.addEventListener('keydown', function (e) {
+    if (photoOverlay.classList.contains('open')) {
+      if (e.key === 'Escape') closePhotoModal();
+      if (e.key === 'ArrowLeft') showPhoto(currentIndex - 1);
+      if (e.key === 'ArrowRight') showPhoto(currentIndex + 1);
+      return;
+    }
+    if (e.key === 'Escape') closePressModal();
+  });
 </script>
 
 </body>
